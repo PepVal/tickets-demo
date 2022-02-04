@@ -5,7 +5,7 @@ import LocationItem from "./LocationItem";
 import Matrix from "./Matrix";
 
 const SceneMap = () => {
-  const { locations } = useContext(GlobalContext);
+  const { locations, selectedLocation } = useContext(GlobalContext);
   const [showForm, setShowForm] = useState(false);
 
   return (
@@ -38,7 +38,7 @@ const SceneMap = () => {
             }}
           />
         )}
-        {locations.length > 0 && <h6 className="mt-2">locations</h6>}
+        {locations.length > 0 && <h5 className="mt-2">Locaciones</h5>}
         <div className="d-flex">
           {locations &&
             locations.map((location, index) => {
@@ -46,7 +46,17 @@ const SceneMap = () => {
             })}
         </div>
       </div>
-      <Matrix />
+      <div className="container-fluid mt-2">
+        <div
+          style={{
+            overflowX: "auto",
+            maxWidth: "75vw",
+            width: "100%",
+          }}
+        >
+          {selectedLocation && <Matrix location={selectedLocation} />}
+        </div>
+      </div>
     </>
   );
 };

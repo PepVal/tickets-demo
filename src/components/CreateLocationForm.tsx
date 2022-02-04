@@ -15,12 +15,9 @@ const CreateLocationForm = ({ onClose }: ICreateProps) => {
 
   const createLocation = (e: any) => {
     e.preventDefault();
-    const location: Location = {
-      name: name.value.toString(),
-      price: price.value.toString(),
-      rows: 5,
-      columns: 5,
-    };
+    const location = new Location();
+    location.name = name.value.toString();
+    location.price = price.value.toString();
     addLocation(location);
   };
 

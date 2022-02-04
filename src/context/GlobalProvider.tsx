@@ -7,14 +7,37 @@ export interface IGlobalProviderProps {
 }
 
 export const GlobalProvider: FC<IGlobalProviderProps> = ({ children }) => {
-  const [locations, setLocation] = useState<Location[]>([]);
+  const [locations, setLocations] = useState<Location[]>([]);
+
+  const [selectedLocation, setSelectedLcn] = useState<Location | null>(null);
+
+  const updatedSelectedLocation = (location: Location | null) => {
+    setSelectedLcn(location);
+  };
 
   const pushLocation = (location: Location) => {
-    setLocation([...locations, location]);
+    setLocations([...locations, location]);
+  };
+
+  const updateLocation = (location: Location) => {
+    const index = locations.findIndex((lcn) => lcn.id === location.id);
+    if (index !== -1) {
+      const newLocations = [...locations];
+      newLocations[index] = location;
+      setLocations(newLocations);
+    }
   };
 
   return (
-    <GlobalContext.Provider value={{ locations, addLocation: pushLocation }}>
+    <GlobalContext.Provider
+      value={{
+        locations,
+        addLocation: pushLocation,
+        selectedLocation,
+        updatedSelectedLocation,
+        updateLocation,
+      }}
+    >
       {children}
     </GlobalContext.Provider>
   );

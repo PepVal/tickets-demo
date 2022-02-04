@@ -1,41 +1,57 @@
 import React from "react";
+import { Location } from "../models/Location";
 
 interface IMatrixProps {
-  columns?: number;
-  rows?: number;
+  location: Location;
 }
 
 let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-const Matrix = ({ columns = 10, rows = 6 }: IMatrixProps) => {
+const Matrix = ({ location }: IMatrixProps) => {
   const renderRows = () => {
-    const r = new Array(rows).fill(0);
-    const c = new Array(columns).fill(0);
-    return r.map((r, ir) => (
-      <div className="row row-cols-auto">
-        <MatrixItem key={ir} name={alphabet.substring(ir, ir + 1)} />
-        {c.map((_, index) => (
-          <MatrixItem key={index} name={`${index + 1}`} />
+    const rowArray = new Array(location.rows).fill(0);
+    const columnArray = new Array(location.columns).fill(0);
+    return rowArray.map((rowItem, indexRow) => (
+      <div className="row mt-1" style={{ flexWrap: "nowrap" }}>
+        <MatrixItem
+          key={indexRow}
+          name={alphabet.substring(indexRow, indexRow + 1)}
+          isLetter
+        />
+        {columnArray.map((columnItem, indexColumn) => (
+          <MatrixItem key={indexColumn} name={`${indexColumn + 1}`} />
         ))}
-        <MatrixItem key={ir} name={alphabet.substring(ir, ir + 1)} />
+        <MatrixItem
+          key={indexRow}
+          name={alphabet.substring(indexRow, indexRow + 1)}
+          isLetter
+        />
       </div>
     ));
   };
 
   return (
-    <div className="container">
-      <div className="">{renderRows()}</div>
+    <div className="matrix-idle">
+      <div>{renderRows()}</div>
+      <p className="bold text-center" style={{ padding: 0, margin: 0 }}>
+        {location.name}
+      </p>
     </div>
   );
 };
 
 interface IMatrixItemProps {
   name: string;
+  isLetter?: boolean;
   onClick?: () => void;
 }
 
-const MatrixItem = ({ name, onClick }: IMatrixItemProps) => {
-  return <div>{name}</div>;
+const MatrixItem = ({ name, onClick, isLetter = false }: IMatrixItemProps) => {
+  return (
+    <div className={isLetter ? "matrix-item-letter" : "matrix-item-chair"}>
+      <p>{name}</p>
+    </div>
+  );
 };
 
 export default Matrix;
