@@ -47,7 +47,7 @@ const Sidebar = () => {
   useEffect(() => {
     columns.updateValue(selectedLocation?.columns.toString() || "5");
     rows.updateValue(selectedLocation?.rows.toString() || "5");
-  }, [selectedLocation]);
+  }, [selectedLocation, columns, rows]);
 
   return (
     <div className="sidebar">
