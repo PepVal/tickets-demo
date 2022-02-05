@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import { GlobalContext } from "../context/GlobalContext";
 import CreateLocationForm from "./CreateLocationForm";
 import LocationItem from "./LocationItem";
 import Matrix from "./Matrix";
 
-const SceneMap = () => {
+const CustomLocations = () => {
   const { locations, selectedLocation } = useContext(GlobalContext);
   const [showForm, setShowForm] = useState(false);
 
@@ -12,7 +13,7 @@ const SceneMap = () => {
     <>
       <div className="container-fluid">
         <div className="d-flex mt-2">
-          <h1>Crear mapa del escenario</h1>
+          <h1>Entradas</h1>
           <div
             style={{
               display: "flex",
@@ -29,6 +30,17 @@ const SceneMap = () => {
             >
               Crear locación
             </button>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginLeft: "8px",
+            }}
+          >
+            <Link className="btn btn-secondary" to="/scene-map">
+              Editar mapa
+            </Link>
           </div>
         </div>
         {showForm && (
@@ -61,4 +73,4 @@ const SceneMap = () => {
   );
 };
 
-export default SceneMap;
+export default CustomLocations;

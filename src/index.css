@@ -87,3 +87,17 @@ code {
   font-weight: bold;
   user-select: none;
 }
+
+.scene-item {
+  border: 2px solid rgb(16, 187, 0);
+  border-style: dashed;
+  background-color: rgba(16, 187, 0, 0.192);
+  border-radius: 5px;
+  width: fit-content;
+  padding: 32px 48px;
+  cursor: move;
+}
+
+.scene-item >p{
+  color: green;
+}
