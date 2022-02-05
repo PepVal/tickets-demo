@@ -4,6 +4,8 @@ export class Location {
   price: string;
   rows: number;
   columns: number;
+  posX: number;
+  posY: number;
 
   constructor() {
     this.id = new Date().getMilliseconds();
@@ -11,5 +13,7 @@ export class Location {
     this.price = "";
     this.rows = 5;
     this.columns = 5;
+    this.posX = 0;
+    this.posY = 0;
   }
 }

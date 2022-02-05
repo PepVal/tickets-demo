@@ -7,6 +7,8 @@ interface IGlobalContextValues {
   updateLocation: (location: Location) => void;
   selectedLocation: Location | null;
   updatedSelectedLocation: (location: Location | null) => void;
+  scene: Location;
+  updateScene: (scene: Location) => void;
 }
 
 export const GlobalContext = createContext<IGlobalContextValues>({
@@ -15,4 +17,6 @@ export const GlobalContext = createContext<IGlobalContextValues>({
   updateLocation: () => {},
   selectedLocation: null,
   updatedSelectedLocation: () => {},
+  scene: new Location(),
+  updateScene: () => {},
 });

@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Location } from "../models/Location";
 import { GlobalContext } from "./GlobalContext";
 
@@ -7,6 +7,7 @@ export interface IGlobalProviderProps {
 }
 
 export const GlobalProvider: FC<IGlobalProviderProps> = ({ children }) => {
+  const [scene, setScene] = useState<Location>(new Location());
   const [locations, setLocations] = useState<Location[]>([]);
 
   const [selectedLocation, setSelectedLcn] = useState<Location | null>(null);
@@ -28,6 +29,22 @@ export const GlobalProvider: FC<IGlobalProviderProps> = ({ children }) => {
     }
   };
 
+  const updateScene = (updatedScene: Location) => {
+    setScene({ ...scene, ...updatedScene });
+  };
+
+  useEffect(() => {
+    setScene({
+      name: "Escenario",
+      rows: 10,
+      columns: 10,
+      id: 1,
+      posX: 0,
+      posY: 0,
+      price: "0",
+    });
+  }, [setScene]);
+
   return (
     <GlobalContext.Provider
       value={{
@@ -36,6 +53,8 @@ export const GlobalProvider: FC<IGlobalProviderProps> = ({ children }) => {
         selectedLocation,
         updatedSelectedLocation,
         updateLocation,
+        scene,
+        updateScene,
       }}
     >
       {children}

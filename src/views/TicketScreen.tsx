@@ -1,5 +1,5 @@
 import React from "react";
-import SceneMap from "../components/SceneMap";
+import CustomLocations from "../components/CustomLocations";
 
 import Sidebar from "../components/Sidebar";
 
@@ -7,7 +7,7 @@ const TicketScreen = () => {
   return (
     <div className="full-width">
       <div className="scene-container">
-        <SceneMap />
+        <CustomLocations />
       </div>
       <div className="sidebar-container">
         <Sidebar />
